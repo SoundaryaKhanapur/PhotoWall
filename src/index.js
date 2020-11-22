@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const tasks = ['work', 'exercise', 'sleep'];
-
-
 class List extends Component {
     render() {
         return (<ol>
-            {tasks.map((task, index) => <li key={index}>{task}</li>)}
+            {this.props.tasks.map((task, index) => <li key={index}>{task}</li>)}
         </ol>)
 
     }
@@ -16,7 +13,7 @@ class List extends Component {
 
 class Title extends Component {
     render() {
-        return (<h1> Task List </h1>)
+        return (<h1> {this.props.title}  </h1>)
 
     }
 
@@ -25,8 +22,9 @@ class Title extends Component {
 class Main extends Component{
     render(){
         return <div>
-            <Title/>
-            <List/>
+            <Title title={'Todo'}/>
+            <List tasks = {['exercise','work']}/>
+            <List tasks = {['eat','sleep']}/>
         </div>
     }
 }
