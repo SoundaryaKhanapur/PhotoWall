@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 const tasks = ['work', 'exercise', 'sleep'];
 
-const element =
-    <div>
-        <h1> Task List </h1>
-        <ol>
+
+class List extends Component {
+    render() {
+        return (<ol>
             {tasks.map((task, index) => <li key={index}>{task}</li>)}
-        </ol>
-    </div>
+        </ol>)
 
+    }
 
-ReactDOM.render(element, document.getElementById('root'));
+}
+
+class Title extends Component {
+    render() {
+        return (<h1> Task List </h1>)
+
+    }
+
+}
+
+class Main extends Component{
+    render(){
+        return <div>
+            <Title/>
+            <List/>
+        </div>
+    }
+}
+ReactDOM.render(<Main/>, document.getElementById('root'));
