@@ -25,12 +25,11 @@ class Main extends Component {
                 description: "beautiful",
                 imageLink: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/types-of-flowers-1579719085.jpg"
             }
-            ],
-            screen: 'photos'
+            ]
 
         }
         this.removePhoto = this.removePhoto.bind(this);
-        this.navigate = this.navigate.bind(this);
+        
 
     }
 
@@ -41,10 +40,10 @@ class Main extends Component {
         }))
     }
 
-    navigate() {
-        this.setState({
-            screen: 'addPhoto'
-        })
+    addPhoto(postSubmitted) {
+        this.setState(state => ({
+            posts: state.posts.concat([postSubmitted])
+        }))
     }
 
     componentDidMount() {
@@ -69,7 +68,12 @@ class Main extends Component {
             )} />
 
 
-            <Route path="/AddPhoto" component = {AddPhoto}/>
+    <Route path="/AddPhoto" render = {({history}) => (
+        <AddPhoto onAddPhoto={(addedPost) => {
+            this.addPhoto(addedPost)
+            history.push('/')
+        }}/>
+    )}/>
            
 
         </div>
